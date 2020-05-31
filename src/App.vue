@@ -67,8 +67,8 @@ export default {
     return {
       sideNav: false,
       menuItems: [
-        { title: "Sign In", icon: "mdi-lock-open", link: "/signin" },
-        { title: "Sign up", icon: "mdi-face", link: "/signup" },
+        { title: "Sign In", icon: "mdi-lock-open", link: "/sign-in" },
+        { title: "Sign up", icon: "mdi-face", link: "/sign-up" },
         { title: "Add Item", icon: "mdi-plus", link: "/add-item" },
       ],
     };
