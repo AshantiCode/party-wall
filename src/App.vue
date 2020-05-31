@@ -1,5 +1,28 @@
 <template>
   <v-app>
+    <v-navigation-drawer app dark temporary color="primary" v-model="sideNav">
+      <v-list-item>
+        <v-list-item-content>
+          <v-list-item-title> Menu</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+      <v-divider></v-divider>
+
+      <v-list-item-group>
+        <v-list-item
+          temporary
+          v-for="item in menuItems"
+          :key="item.title"
+          :to="item.link"
+        >
+          <v-icon>{{ item.icon }}</v-icon>
+          <v-list-item-content>
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list-item-group>
+    </v-navigation-drawer>
+
     <v-app-bar app dark class="text-uppercase" color="primary">
       <v-app-bar-nav-icon
         @click="sideNav = !sideNav"
@@ -24,7 +47,7 @@
 
       <v-toolbar-items class="hidden-xs-only">
         <v-btn text v-for="item in menuItems" :key="item.title" :to="item.link">
-          <v-icon class="mr-2">
+          <v-icon left>
             {{ item.icon }}
           </v-icon>
           {{ item.title }}
@@ -32,30 +55,9 @@
       </v-toolbar-items>
     </v-app-bar>
 
-    <v-navigation-drawer dark temporary color="primary" v-model="sideNav">
-      <v-list-item>
-        <v-list-item-content>
-          <v-list-item-title> Menu</v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
-      <v-divider></v-divider>
-
-      <v-list-item-group>
-        <v-list-item
-          temporary
-          v-for="item in menuItems"
-          :key="item.title"
-          :to="item.link"
-        >
-          <v-icon>{{ item.icon }}</v-icon>
-          <v-list-item-content>
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list-item-group>
-    </v-navigation-drawer>
-
-    <v-content> </v-content>
+    <v-content>
+      <router-view></router-view>
+    </v-content>
   </v-app>
 </template>
 
