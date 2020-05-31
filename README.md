@@ -1,31 +1,5 @@
 # party-wall
 
-You can register and login. You can offer here what food and drinks you want to sell at parties
-
-## Project setup
-
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-
-```
-npm run build
-```
-
-### Lints and fixes files
-
-```
-npm run lint
-```
-
-### Customize configuration
-
-See [Configuration Reference](https://cli.vuejs.org/config/).
+You can register and login. After login you see a list of food and beverages people offer for sell for your party.
+You also can create an offer to sell your food or beverages. If you change your mind or ran out of items, just delete
+you entry.
