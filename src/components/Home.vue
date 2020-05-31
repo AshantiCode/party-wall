@@ -1,5 +1,5 @@
 <template>
   <div>
-    <h1>I am the Add Item Page</h1>
+    <h1>I am the Home Page</h1>
   </div>
 </template>

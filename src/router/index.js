@@ -12,22 +12,22 @@ export default new VueRouter({
     {
       path: "/",
       name: "home",
-      component: "Home",
+      component: Home,
     },
     {
       path: "/add-item",
       name: "add-item",
-      component: "AddItem",
+      component: AddItem,
     },
     {
       path: "/sign-in",
       name: "sign-in",
-      component: "SignIn",
+      component: SignIn,
     },
     {
       path: "/sign-up",
       name: "sign-up",
-      component: "SignUp",
+      component: SignUp,
     },
   ],
 });
