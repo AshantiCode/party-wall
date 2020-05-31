@@ -1,5 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import Home from "../components/Home";
 import AddItem from "../components/AddItem";
 import SignIn from "../components/SignIn";
 import SignUp from "../components/SignUp";
