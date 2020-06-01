@@ -2,8 +2,8 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../components/Home";
 import AddItem from "../components/AddItem";
-import SignIn from "../components/SignIn";
-import SignUp from "../components/SignUp";
+import Login from "../components/Login";
+import Register from "../components/Register";
 import AddFood from "../components/AddFood";
 import AddDrink from "../components/AddDrink";
 
@@ -35,12 +35,12 @@ export default new VueRouter({
     {
       path: "/sign-in",
       name: "sign-in",
-      component: SignIn,
+      component: Login,
     },
     {
-      path: "/sign-up",
-      name: "sign-up",
-      component: SignUp,
+      path: "/register",
+      name: "register",
+      component: Register,
     },
   ],
 });

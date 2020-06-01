@@ -9,7 +9,12 @@
       <v-divider></v-divider>
 
       <v-list-item-group>
-        <v-list-item temporary v-for="item in menuItems" :key="item.title" :to="item.link">
+        <v-list-item
+          temporary
+          v-for="item in menuItems"
+          :key="item.title"
+          :to="item.link"
+        >
           <v-icon>{{ item.icon }}</v-icon>
           <v-list-item-content>
             <v-list-item-title>{{ item.title }}</v-list-item-title>
@@ -19,14 +24,20 @@
     </v-navigation-drawer>
 
     <v-app-bar app dark class="text-uppercase" color="primary">
-      <v-app-bar-nav-icon @click="sideNav = !sideNav" class="hidden-sm-and-up"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon
+        @click="sideNav = !sideNav"
+        class="hidden-sm-and-up"
+      ></v-app-bar-nav-icon>
       <v-toolbar-title>
         <div class="d-flex align-center">
-          <v-img :src="require('@/assets/logo.png')" alt="Party Wall Logo" width="40" class="mr-5" />
+          <v-img
+            :src="require('@/assets/logo.png')"
+            alt="Party Wall Logo"
+            width="40"
+            class="mr-5"
+          />
           <router-link to="/" tag="span" style="cursor:pointer;">
-            <h1>
-              <span class="font-weight-thin">Party</span>Wall
-            </h1>
+            <h1><span class="font-weight-thin">Party</span>Wall</h1>
           </router-link>
         </div>
       </v-toolbar-title>
@@ -55,11 +66,11 @@ export default {
     return {
       sideNav: false,
       menuItems: [
-        { title: "Sign In", icon: "mdi-lock-open", link: "/sign-in" },
-        { title: "Sign up", icon: "mdi-face", link: "/sign-up" },
-        { title: "Add Item", icon: "mdi-plus", link: "/add-item" }
-      ]
+        { title: "Login", icon: "mdi-lock-open", link: "/login" },
+        { title: "Register", icon: "mdi-face", link: "/register" },
+        { title: "Add Item", icon: "mdi-plus", link: "/add-item" },
+      ],
     };
-  }
+  },
 };
 </script>
