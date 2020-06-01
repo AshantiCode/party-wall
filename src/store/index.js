@@ -48,6 +48,9 @@ export const store = new Vuex.Store({
     addFood(state, payload) {
       state.loadedFood.unshift(payload);
     },
+    addDrink(state, payload) {
+      state.loadedDrinks.unshift(payload);
+    },
   },
   actions: {
     addFood({ commit }, payload) {
@@ -59,6 +62,15 @@ export const store = new Vuex.Store({
         price: payload.price,
       };
       commit("addFood", newFood);
+    },
+    addDrink({ commit }, payload) {
+      const newDrink = {
+        name: payload.name,
+        volume: payload.volume,
+        quantity: payload.quantity,
+        price: payload.price,
+      };
+      commit("addDrink", newDrink);
     },
   },
   getters: {

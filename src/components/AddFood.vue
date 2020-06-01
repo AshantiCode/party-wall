@@ -87,7 +87,7 @@
           </v-row>
           <v-row>
             <v-col>
-              <p>How much does it cost?</p>
+              <p>How much does one order cost?</p>
               <v-slider
                 v-model="price"
                 class="align-center"
