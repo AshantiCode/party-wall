@@ -44,8 +44,23 @@ export const store = new Vuex.Store({
       createdItems: ["kdjfdfdk"],
     },
   },
-  mutations: {},
-  actions: {},
+  mutations: {
+    addFood(state, payload) {
+      state.loadedFood.unshift(payload);
+    },
+  },
+  actions: {
+    addFood({ commit }, payload) {
+      const newFood = {
+        name: payload.name,
+        description: payload.description,
+        weight: payload.weight,
+        quantity: payload.quantity,
+        price: payload.price,
+      };
+      commit("addFood", newFood);
+    },
+  },
   getters: {
     loadedFood(state) {
       return state.loadedFood;

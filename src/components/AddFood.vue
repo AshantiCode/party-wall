@@ -11,11 +11,11 @@
           <v-row>
             <v-col>
               <v-text-field
-                v-model="title"
-                name="title"
-                id="title"
+                v-model="name"
+                name="name"
+                id="name"
                 label="What are you selling?"
-                :counter="10"
+                :counter="20"
                 filled
                 required
               ></v-text-field>
@@ -41,7 +41,13 @@
           <v-row>
             <v-col>
               <p>How much does it weigh?</p>
-              <v-slider v-model="weight" class="align-center" max="10" :min="1" hide-details>
+              <v-slider
+                v-model="weight"
+                class="align-center"
+                max="10"
+                :min="1"
+                hide-details
+              >
                 <template v-slot:append>
                   <v-text-field
                     v-model="weight"
@@ -50,7 +56,8 @@
                     single-line
                     type="number"
                     style="width: 40px"
-                  ></v-text-field>lbs.
+                  ></v-text-field
+                  >lbs.
                 </template>
               </v-slider>
             </v-col>
@@ -58,7 +65,13 @@
           <v-row>
             <v-col>
               <p>How many servings does one order include?</p>
-              <v-slider v-model="quantity" class="align-center" max="15" min="1" hide-details>
+              <v-slider
+                v-model="quantity"
+                class="align-center"
+                max="15"
+                min="1"
+                hide-details
+              >
                 <template v-slot:append>
                   <v-text-field
                     v-model="quantity"
@@ -75,7 +88,13 @@
           <v-row>
             <v-col>
               <p>How much does it cost?</p>
-              <v-slider v-model="price" class="align-center" max="100" min="1" hide-details>
+              <v-slider
+                v-model="price"
+                class="align-center"
+                max="100"
+                min="1"
+                hide-details
+              >
                 <template v-slot:append>
                   <v-text-field
                     v-model="price"
@@ -84,14 +103,17 @@
                     single-line
                     type="number"
                     style="width: 40px"
-                  ></v-text-field>$
+                  ></v-text-field
+                  >$
                 </template>
               </v-slider>
             </v-col>
           </v-row>
           <v-row class="text-right mt-10">
             <v-col>
-              <v-btn type="submit" :disabled="!formIsValid" color="accent">Add Food to Listins</v-btn>
+              <v-btn type="submit" :disabled="!formIsValid" color="accent"
+                >Add Food to Listing</v-btn
+              >
             </v-col>
           </v-row>
         </v-form>
@@ -104,28 +126,37 @@
 export default {
   data() {
     return {
-      title: "",
+      name: "",
       description: "",
       weight: "",
       quantity: "",
-      price: ""
+      price: "",
     };
   },
   computed: {
     formIsValid() {
       return (
-        this.title !== "" &&
+        this.name !== "" &&
         this.description !== "" &&
         this.weight !== "" &&
         this.quantity !== "" &&
         this.price !== ""
       );
-    }
+    },
   },
   methods: {
     onAddFood() {
       console.log("This: ", this);
-    }
-  }
+      const newFoodData = {
+        name: this.name,
+        description: this.description,
+        weight: this.weight,
+        quantity: this.quantity,
+        price: this.price,
+      };
+      this.$store.dispatch("addFood", newFoodData);
+      this.$router.push({ name: "home" });
+    },
+  },
 };
 </script>
