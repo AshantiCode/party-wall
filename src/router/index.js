@@ -4,6 +4,8 @@ import Home from "../components/Home";
 import AddItem from "../components/AddItem";
 import SignIn from "../components/SignIn";
 import SignUp from "../components/SignUp";
+import AddFood from "../components/AddFood";
+import AddDrink from "../components/AddDrink";
 
 Vue.use(VueRouter);
 
@@ -19,6 +21,16 @@ export default new VueRouter({
       path: "/add-item",
       name: "add-item",
       component: AddItem,
+    },
+    {
+      path: "/add-food",
+      name: "add-food",
+      component: AddFood,
+    },
+    {
+      path: "/add-drink",
+      name: "add-drink",
+      component: AddDrink,
     },
     {
       path: "/sign-in",
