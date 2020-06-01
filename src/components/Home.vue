@@ -32,7 +32,7 @@
                 </div>
               </v-col>
             </v-row>
-            <v-btn class="primary">Buy now!</v-btn>
+            <v-btn class="primary">Order now!</v-btn>
           </v-container>
         </v-card>
 
