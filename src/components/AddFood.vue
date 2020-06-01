@@ -45,7 +45,7 @@
                 v-model="weight"
                 class="align-center"
                 max="10"
-                :min="1"
+                min="1"
                 hide-details
               >
                 <template v-slot:append>
@@ -112,7 +112,7 @@
           <v-row class="text-right mt-10">
             <v-col>
               <v-btn type="submit" :disabled="!formIsValid" color="accent"
-                >Add Food to Listing</v-btn
+                >Add to Listing</v-btn
               >
             </v-col>
           </v-row>
