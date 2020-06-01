@@ -22,15 +22,18 @@
               </v-radio-group>
             </v-col>
           </v-row>
-
-          <v-btn
-            color="accent py-5 px-8"
-            :disabled="hasInput()"
-            @click="redirectTo(selectedCategory)"
-          >
-            Next
-            <v-icon right>mdi-arrow-right</v-icon>
-          </v-btn>
+          <v-row class="text-center">
+            <v-col>
+              <v-btn
+                color="accent py-5 px-8"
+                :disabled="hasInput()"
+                @click="redirectTo(selectedCategory)"
+              >
+                Next
+                <v-icon right>mdi-arrow-right</v-icon>
+              </v-btn>
+            </v-col>
+          </v-row>
         </v-form>
       </v-col>
     </v-row>
