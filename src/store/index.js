@@ -1,5 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import firebase from "firebase/app";
+import "firebase/auth";
 
 Vue.use(Vuex);
 
@@ -51,6 +53,9 @@ export const store = new Vuex.Store({
     addDrink(state, payload) {
       state.loadedDrinks.unshift(payload);
     },
+    setUser(state, payload) {
+      state.user = payload;
+    },
   },
   actions: {
     addFood({ commit }, payload) {
@@ -71,6 +76,18 @@ export const store = new Vuex.Store({
         price: payload.price,
       };
       commit("addDrink", newDrink);
+    },
+    async registerUser({ commit }, payload) {
+      console.log("Payload :", payload);
+      const response = await firebase
+        .auth()
+        .createUserWithEmailAndPassword(payload.email, payload.password);
+      const newUser = {
+        id: response.user.user.uid,
+        createdItems: [],
+        savedItems: [],
+      };
+      commit("setUser", newUser);
     },
   },
   getters: {

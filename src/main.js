@@ -19,6 +19,7 @@ new Vue({
       databaseURL: "https://party-wall-e5824.firebaseio.com",
       projectId: "party-wall-e5824",
       storageBucket: "party-wall-e5824.appspot.com",
+      appId: "1:562412399028:web:7a5c3ee687023938182ae1",
     });
   },
 }).$mount("#app");
