@@ -11,12 +11,12 @@
               <v-col cols="7">
                 <v-card-title>{{ food.name }}</v-card-title>
                 <v-card-text>
-                  <v-expansion-panels accordion>
+                  <v-expansion-panels hover flat accordion>
                     <v-expansion-panel>
-                      <v-expansion-panel-header
+                      <v-expansion-panel-header class="pa-0"
                         >Description</v-expansion-panel-header
                       >
-                      <v-expansion-panel-content>{{
+                      <v-expansion-panel-content class="pa-0">{{
                         food.description
                       }}</v-expansion-panel-content>
                     </v-expansion-panel>
@@ -24,7 +24,7 @@
                 </v-card-text>
                 <div>
                   <v-chip class="ma-2" color="secondary"
-                    >{{ food.quantity }} x in Stock</v-chip
+                    >{{ food.quantity }} per Order</v-chip
                   >
                   <v-chip class="ma-2" color="secondary"
                     >{{ food.price }} $</v-chip
@@ -62,6 +62,12 @@
     </v-row>
   </v-container>
 </template>
+
+<style>
+.v-expansion-panel-content__wrap {
+  padding: 0;
+}
+</style>
 
 <script>
 export default {
