@@ -3,12 +3,8 @@
     <v-row>
       <v-col sm="6" offset-sm="3">
         <div v-for="item in items" :key="item.id">
-          <v-card v-if="item.category == 'food'" class="mb-5">
-            <FoodItem />
-          </v-card>
-          <v-card v-else class="mb-5">
-            <DrinkItem />
-          </v-card>
+          <FoodListItem v-if="item.category == 'food'" v-bind:item="item" />
+          <DrinkListItem v-else v-bind:item="item" />
         </div>
       </v-col>
     </v-row>
@@ -22,18 +18,18 @@
 </style>
 
 <script>
-import FoodItem from "./FoodItem";
-import DrinkItem from "./DrinkItem";
+import FoodListItem from "./FoodListItem";
+import DrinkListItem from "./DrinkListItem";
 import axios from "axios";
 
 export default {
   components: {
-    FoodItem,
-    DrinkItem,
+    FoodListItem,
+    DrinkListItem
   },
   data() {
     return {
-      items: [],
+      items: []
     };
   },
   async created() {
@@ -43,6 +39,6 @@ export default {
     } catch (error) {
       console.log(error);
     }
-  },
+  }
 };
 </script>
