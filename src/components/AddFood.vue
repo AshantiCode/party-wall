@@ -41,13 +41,7 @@
           <v-row>
             <v-col>
               <p>How much does it weigh?</p>
-              <v-slider
-                v-model="weight"
-                class="align-center"
-                max="10"
-                min="1"
-                hide-details
-              >
+              <v-slider v-model="weight" class="align-center" max="10" min="1" hide-details>
                 <template v-slot:append>
                   <v-text-field
                     v-model="weight"
@@ -56,8 +50,7 @@
                     single-line
                     type="number"
                     style="width: 40px"
-                  ></v-text-field
-                  >lbs.
+                  ></v-text-field>lbs.
                 </template>
               </v-slider>
             </v-col>
@@ -65,13 +58,7 @@
           <v-row>
             <v-col>
               <p>How many servings does one order include?</p>
-              <v-slider
-                v-model="quantity"
-                class="align-center"
-                max="15"
-                min="1"
-                hide-details
-              >
+              <v-slider v-model="quantity" class="align-center" max="15" min="1" hide-details>
                 <template v-slot:append>
                   <v-text-field
                     v-model="quantity"
@@ -88,13 +75,7 @@
           <v-row>
             <v-col>
               <p>How much does one order cost?</p>
-              <v-slider
-                v-model="price"
-                class="align-center"
-                max="100"
-                min="1"
-                hide-details
-              >
+              <v-slider v-model="price" class="align-center" max="100" min="1" hide-details>
                 <template v-slot:append>
                   <v-text-field
                     v-model="price"
@@ -103,17 +84,14 @@
                     single-line
                     type="number"
                     style="width: 40px"
-                  ></v-text-field
-                  >$
+                  ></v-text-field>$
                 </template>
               </v-slider>
             </v-col>
           </v-row>
           <v-row class="text-right mt-10">
             <v-col>
-              <v-btn type="submit" :disabled="!formIsValid" color="accent"
-                >Add to Listing</v-btn
-              >
+              <v-btn type="submit" :disabled="!formIsValid" color="accent">Add to Listing</v-btn>
             </v-col>
           </v-row>
         </v-form>
@@ -123,6 +101,10 @@
 </template>
 
 <script>
+import axios from "axios";
+
+const baseUrl = "http://localhost:3000/items";
+
 export default {
   data() {
     return {
@@ -130,7 +112,7 @@ export default {
       description: "",
       weight: "",
       quantity: "",
-      price: "",
+      price: ""
     };
   },
   computed: {
@@ -142,21 +124,23 @@ export default {
         this.quantity !== "" &&
         this.price !== ""
       );
-    },
+    }
   },
   methods: {
-    onAddFood() {
-      console.log("This: ", this);
+    async onAddFood() {
       const newFoodData = {
         name: this.name,
+        category: "food",
         description: this.description,
         weight: this.weight,
         quantity: this.quantity,
-        price: this.price,
+        price: this.price
       };
-      this.$store.dispatch("addFood", newFoodData);
-      this.$router.push({ name: "home" });
-    },
-  },
+
+      const response = await axios.post(baseUrl, newFoodData);
+      console.log(response);
+      // Assign Food.id to User later to reference what user has created
+    }
+  }
 };
 </script>
