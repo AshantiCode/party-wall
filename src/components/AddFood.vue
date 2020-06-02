@@ -138,8 +138,9 @@ export default {
       };
 
       const response = await axios.post(baseUrl, newFoodData);
-      console.log(response);
+      console.log("Response in AddFood: ", response);
       // Assign Food.id to User later to reference what user has created
+      this.$router.push({ name: "home" });
     }
   }
 };

@@ -27,15 +27,9 @@
             <v-col>
               <h4 class="font-weight-regular">
                 How much volume does one
-                <span class="accent--text"> {{ name }} </span> have?
+                <span class="accent--text">{{ name }}</span> have?
               </h4>
-              <v-slider
-                v-model="volume"
-                class="align-center"
-                max="100"
-                min="1"
-                hide-details
-              >
+              <v-slider v-model="volume" class="align-center" max="100" min="1" hide-details>
                 <template v-slot:append>
                   <v-text-field
                     v-model="volume"
@@ -44,8 +38,7 @@
                     single-line
                     type="number"
                     style="width: 45px"
-                  ></v-text-field
-                  >oz
+                  ></v-text-field>oz
                 </template>
               </v-slider>
             </v-col>
@@ -53,13 +46,7 @@
           <v-row>
             <v-col>
               <p>How many servings does one order include?</p>
-              <v-slider
-                v-model="quantity"
-                class="align-center"
-                max="15"
-                min="1"
-                hide-details
-              >
+              <v-slider v-model="quantity" class="align-center" max="15" min="1" hide-details>
                 <template v-slot:append>
                   <v-text-field
                     v-model="quantity"
@@ -76,13 +63,7 @@
           <v-row>
             <v-col>
               <p>How much does one order cost?</p>
-              <v-slider
-                v-model="price"
-                class="align-center"
-                max="100"
-                min="1"
-                hide-details
-              >
+              <v-slider v-model="price" class="align-center" max="100" min="1" hide-details>
                 <template v-slot:append>
                   <v-text-field
                     v-model="price"
@@ -91,17 +72,14 @@
                     single-line
                     type="number"
                     style="width: 45px"
-                  ></v-text-field
-                  >$
+                  ></v-text-field>$
                 </template>
               </v-slider>
             </v-col>
           </v-row>
           <v-row class="text-right mt-10">
             <v-col>
-              <v-btn type="submit" :disabled="!formIsValid" color="accent"
-                >Add to Listing</v-btn
-              >
+              <v-btn type="submit" :disabled="!formIsValid" color="accent">Add to Listing</v-btn>
             </v-col>
           </v-row>
         </v-form>
@@ -111,13 +89,16 @@
 </template>
 
 <script>
+import axios from "axios";
+
+const baseUrl = "http://localhost:3000/items";
 export default {
   data() {
     return {
       name: "",
       volume: "",
       quantity: "",
-      price: "",
+      price: ""
     };
   },
   computed: {
@@ -128,20 +109,23 @@ export default {
         this.quantity !== "" &&
         this.price !== ""
       );
-    },
+    }
   },
   methods: {
-    onAddDrink() {
-      console.log("This: ", this);
+    async onAddDrink() {
       const newDrinksData = {
         name: this.name,
+        category: "drinks",
         volume: this.volume,
         quantity: this.quantity,
-        price: this.price,
+        price: this.price
       };
-      this.$store.dispatch("addDrink", newDrinksData);
+      const response = await axios.post(baseUrl, newDrinksData);
+      console.log("Response in AddDrink: ", response);
+      //Later add UserId to this item to reference
+
       this.$router.push({ name: "home" });
-    },
-  },
+    }
+  }
 };
 </script>
