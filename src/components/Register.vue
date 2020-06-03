@@ -39,9 +39,7 @@
                 </v-row>
                 <v-row>
                   <v-col cols="12">
-                    <v-btn type="submit" :disabled="!formIsValid" color="accent"
-                      >Register</v-btn
-                    >
+                    <v-btn type="submit" :disabled="!formIsValid" color="accent">Register</v-btn>
                   </v-col>
                 </v-row>
               </v-form>
@@ -60,18 +58,23 @@ export default {
       showPassword: false,
       email: "",
       password: "",
-      emailRules: [
-        (v) => !!v || "E-mail is required",
-        (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
-      ],
-      passwordRules: [
-        (v) => (v && v.length > 6) || "Name must have at least 6 characters",
-      ],
+      emailRules: [(v) => !!v || "E-mail is required", (v) => /.+@.+\..+/.test(v) || "E-mail must be valid"],
+      passwordRules: [(v) => (v && v.length > 6) || "Name must have at least 6 characters"],
     };
   },
   computed: {
     formIsValid() {
       return this.email.includes("@") && this.password.length >= 6;
+    },
+    user() {
+      return this.$store.getters.user;
+    },
+  },
+  watch: {
+    user(value) {
+      if ((value !== null) & (value !== undefined)) {
+        this.$router.push({ name: "home" });
+      }
     },
   },
   methods: {
@@ -80,9 +83,6 @@ export default {
       if (!this.formIsValid) {
         return;
       }
-      console.log(this.email, this.password);
-      console.log("Type Of: ", typeof this.email);
-
       const newUser = {
         email: this.email,
         password: this.password,
