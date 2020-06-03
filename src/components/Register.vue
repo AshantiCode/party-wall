@@ -40,6 +40,7 @@
                 <v-row>
                   <v-col cols="12">
                     <v-btn type="submit" :disabled="!formIsValid" color="accent">Register</v-btn>
+                    <app-alert v-if="error" @dismissed="onDismissed" :text="error.message"></app-alert>
                   </v-col>
                 </v-row>
               </v-form>
@@ -59,7 +60,7 @@ export default {
       email: "",
       password: "",
       emailRules: [(v) => !!v || "E-mail is required", (v) => /.+@.+\..+/.test(v) || "E-mail must be valid"],
-      passwordRules: [(v) => (v && v.length > 6) || "Name must have at least 6 characters"],
+      passwordRules: [(v) => (v && v.length > 6) || "Password must have at least 6 characters"],
     };
   },
   computed: {
@@ -68,6 +69,9 @@ export default {
     },
     user() {
       return this.$store.getters.user;
+    },
+    error() {
+      return this.$store.getters.error;
     },
   },
   watch: {
@@ -88,6 +92,9 @@ export default {
         password: this.password,
       };
       this.$store.dispatch("registerUser", newUser);
+    },
+    onDismissed() {
+      this.$store.dispatch("clearError");
     },
   },
 };

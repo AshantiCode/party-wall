@@ -8,18 +8,29 @@ Vue.use(Vuex);
 export const store = new Vuex.Store({
   state: {
     user: null,
+    loading: false,
+    error: null,
   },
   mutations: {
     setUser(state, payload) {
       state.user = payload;
+    },
+    setError(state, payload) {
+      state.error = payload;
+    },
+    clearError(state) {
+      state.error = null;
     },
   },
   actions: {
     async registerUser({ commit }, payload) {
       try {
         console.log("Payload :", payload);
+
+        commit("clearError");
         const response = await firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password);
-        console.log("REsponse: ", response);
+        console.log("Rsponse in State: ", response);
+
         const newUser = {
           id: response.user.uid,
           createdItems: [],
@@ -27,13 +38,14 @@ export const store = new Vuex.Store({
         };
         commit("setUser", newUser);
       } catch (error) {
-        console.log(error);
+        commit("setError", error);
       }
     },
     async loginUser({ commit }, payload) {
       try {
         const response = await firebase.auth().signInWithEmailAndPassword(payload.email, payload.password);
-        console.log("Login Respone: ", response);
+
+        commit("clearError");
         const newUser = {
           id: response.user.uid,
           createdItems: [],
@@ -41,13 +53,19 @@ export const store = new Vuex.Store({
         };
         commit("setUser", newUser);
       } catch (error) {
-        console.log(error);
+        commit("setError", error);
       }
     },
+  },
+  clearError({ commit }) {
+    commit("clearError");
   },
   getters: {
     user(state) {
       return state.user;
+    },
+    error(state) {
+      return state.error;
     },
   },
 });
