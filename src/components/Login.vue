@@ -40,6 +40,7 @@
                 <v-row>
                   <v-col cols="12">
                     <v-btn type="submit" :disabled="!formIsValid" color="accent">Login</v-btn>
+                    <app-alert v-if="error" @dismissed="onDismissed" :text="error.message"></app-alert>
                   </v-col>
                 </v-row>
               </v-form>
@@ -69,6 +70,9 @@ export default {
     user() {
       return this.$store.getters.user;
     },
+    error() {
+      return this.$store.getters.error;
+    },
   },
   watch: {
     user(value) {
@@ -88,6 +92,9 @@ export default {
         password: this.password,
       };
       this.$store.dispatch("loginUser", newUser);
+    },
+    onDismissed() {
+      this.$store.dispatch("clearError");
     },
   },
 };
