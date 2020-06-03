@@ -33,8 +33,8 @@ export default new VueRouter({
       component: AddDrink,
     },
     {
-      path: "/sign-in",
-      name: "sign-in",
+      path: "/login",
+      name: "login",
       component: Login,
     },
     {

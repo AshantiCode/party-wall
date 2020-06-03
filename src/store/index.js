@@ -7,10 +7,7 @@ Vue.use(Vuex);
 
 export const store = new Vuex.Store({
   state: {
-    user: {
-      id: "eir98cr",
-      createdItems: ["kdjfdfdk"],
-    },
+    user: null,
   },
   mutations: {
     setUser(state, payload) {
@@ -19,14 +16,38 @@ export const store = new Vuex.Store({
   },
   actions: {
     async registerUser({ commit }, payload) {
-      console.log("Payload :", payload);
-      const response = await firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password);
-      const newUser = {
-        id: response.user.user.uid,
-        createdItems: [],
-        savedItems: [],
-      };
-      commit("setUser", newUser);
+      try {
+        console.log("Payload :", payload);
+        const response = await firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password);
+        console.log("REsponse: ", response);
+        const newUser = {
+          id: response.user.uid,
+          createdItems: [],
+          savedItems: [],
+        };
+        commit("setUser", newUser);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async loginUser({ commit }, payload) {
+      try {
+        const response = await firebase.auth().signInWithEmailAndPassword(payload.email, payload.password);
+        console.log("Login Respone: ", response);
+        const newUser = {
+          id: response.user.uid,
+          createdItems: [],
+          savedItems: [],
+        };
+        commit("setUser", newUser);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+  },
+  getters: {
+    user(state) {
+      return state.user;
     },
   },
 });
