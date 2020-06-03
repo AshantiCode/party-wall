@@ -23,6 +23,7 @@
         <v-text-field append-icon="mdi-currency-usd" readonly v-model="totalPrice" label="Total Price" value="text">{{
           totalPrice
         }}</v-text-field>
+        <v-chip v-model="totalPrice" value="text">{{ totalPrice }}</v-chip>
       </v-col>
     </v-list-item>
     <v-expansion-panels pansion-panels flat accordion>
@@ -41,22 +42,9 @@ export default {
   props: ["item"],
   data() {
     return {
-      counter: 0,
       menge: 0,
       totalPrice: 0,
     };
-  },
-  methods: {
-    increment() {
-      this.counter = parseInt(this.counter, 10) + 1;
-    },
-    decrement() {
-      if (this.counter <= 0) {
-        return;
-      } else {
-        this.counter = parseInt(this.counter, 10) - 1;
-      }
-    },
   },
   computed: {
     maxMenge() {
@@ -69,8 +57,8 @@ export default {
     },
   },
   watch: {
-    menge(val) {
-      return (this.totalPrice = this.item.price * val);
+    menge(value) {
+      return (this.totalPrice = this.item.price * value);
     },
   },
 };
