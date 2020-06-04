@@ -1,4 +1,4 @@
-<template c>
+<template>
   <v-container>
     <v-row>
       <v-col v-for="item in items" :key="item.id">
