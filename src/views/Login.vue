@@ -83,7 +83,6 @@ export default {
   },
   methods: {
     onLogin() {
-      //later vuex
       if (!this.formIsValid) {
         return;
       }

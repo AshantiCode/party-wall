@@ -83,7 +83,6 @@ export default {
   },
   methods: {
     onRegister() {
-      //later vuex
       if (!this.formIsValid) {
         return;
       }
