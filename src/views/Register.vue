@@ -1,10 +1,10 @@
 <template>
   <v-container>
     <v-row class="mt-10">
-      <v-col cols="12" sm="6" offset-sm="3">
+      <v-col cols="12" sm="6" offset-sm="3" md="4" offset-md="4">
         <v-card>
           <v-card-title>
-            <h1 class="display-1">Register</h1>
+            <h1 class="display-1 secondary--text">Register</h1>
           </v-card-title>
           <v-card-text>
             <v-container>
