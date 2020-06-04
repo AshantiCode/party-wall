@@ -44,7 +44,7 @@ export const store = new Vuex.Store({
     async loginUser({ commit }, payload) {
       try {
         const response = await firebase.auth().signInWithEmailAndPassword(payload.email, payload.password);
-
+        console.log("Login Response: ", response);
         commit("clearError");
         const newUser = {
           id: response.user.uid,
@@ -55,6 +55,13 @@ export const store = new Vuex.Store({
       } catch (error) {
         commit("setError", error);
       }
+    },
+    autoLogin({ commit }, payload) {
+      commit("setUser", { id: payload.uid, createdItems: [], savedItems: [] });
+    },
+    logoutUser({ commit }) {
+      firebase.auth().signOut();
+      commit("setUser = null");
     },
   },
   clearError({ commit }) {
