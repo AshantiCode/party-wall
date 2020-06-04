@@ -90,6 +90,8 @@
 
 <script>
 import axios from "axios";
+import { store } from "../store";
+console.log("USER in add Drink: ", store.getters.user);
 
 const baseUrl = "http://localhost:3000/items";
 export default {
@@ -98,7 +100,8 @@ export default {
       name: "",
       volume: "",
       quantity: "",
-      price: ""
+      price: "",
+      creatorId: ""
     };
   },
   computed: {
@@ -113,17 +116,18 @@ export default {
   },
   methods: {
     async onAddDrink() {
+      const creatorId = store.getters.user.id;
       const newDrinksData = {
         name: this.name,
         category: "drinks",
         volume: this.volume,
         quantity: this.quantity,
-        price: this.price
+        price: this.price,
+        creatorId: creatorId
       };
       const response = await axios.post(baseUrl, newDrinksData);
-      console.log("Response in AddDrink: ", response);
-      //Later add UserId to this item to reference
 
+      this.$store.dispatch("setUser", response.data);
       this.$router.push({ name: "home" });
     }
   }

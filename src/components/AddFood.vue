@@ -102,6 +102,7 @@
 
 <script>
 import axios from "axios";
+import { store } from "../store";
 
 const baseUrl = "http://localhost:3000/items";
 
@@ -112,7 +113,8 @@ export default {
       description: "",
       weight: "",
       quantity: "",
-      price: ""
+      price: "",
+      creatorId: ""
     };
   },
   computed: {
@@ -128,18 +130,20 @@ export default {
   },
   methods: {
     async onAddFood() {
+      const creatorId = store.getters.user.id;
       const newFoodData = {
         name: this.name,
         category: "food",
         description: this.description,
         weight: this.weight,
         quantity: this.quantity,
-        price: this.price
+        price: this.price,
+        creatorId: creatorId
       };
 
       const response = await axios.post(baseUrl, newFoodData);
-      console.log("Response in AddFood: ", response);
-      // Assign Food.id to User later to reference what user has created
+
+      this.$store.dispatch("setUser", response.data);
       this.$router.push({ name: "home" });
     }
   }
