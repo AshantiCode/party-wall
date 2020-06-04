@@ -25,8 +25,10 @@ new Vue({
       appId: "1:562412399028:web:7a5c3ee687023938182ae1",
     });
     firebase.auth().onAuthStateChanged((user) => {
+      console.log("USER: ", user);
       if (user) {
         this.$store.dispatch("autoLogin", user);
+        this.$router.push({ name: "home" });
       }
     });
   },
