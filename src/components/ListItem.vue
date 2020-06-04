@@ -41,6 +41,12 @@
         </v-row>
       </v-row>
       <v-row>
+        <v-col>
+          <v-btn fab small color="accent" v-if="userIsCreator" @click="onDeleteItem(item.id)">
+            <v-icon>mdi-delete-forever</v-icon>
+          </v-btn>
+        </v-col>
+
         <v-spacer></v-spacer>
 
         <v-col>
@@ -53,6 +59,11 @@
 
 
 <script>
+import axios from "axios";
+// import { store } from "../store";
+
+const baseUrl = "http://localhost:3000/items";
+
 export default {
   name: "ListItem",
   props: ["item"],
@@ -61,6 +72,15 @@ export default {
       maxItems: 0,
       totalPrice: 0
     };
+  },
+  methods: {
+    onDeleteItem(itemId) {
+      const deleteUrl = `${baseUrl}/${itemId}`;
+
+      axios.delete(deleteUrl).then(response => {
+        console.log("Axios Delete REsponse: ", response);
+      });
+    }
   },
   computed: {
     maxItemsArray() {
@@ -73,6 +93,23 @@ export default {
     },
     drinks() {
       return this.item.category == "drinks";
+    },
+    userIsAuthenticated() {
+      return (
+        this.$store.getters.user !== null &&
+        this.$store.getters.user !== undefined
+      );
+    },
+    createdItem() {
+      return this.item.creatorId;
+    },
+    userIsCreator() {
+      const createdItem = this.item.creatorId;
+
+      if (!this.userIsAuthenticated) {
+        return false;
+      }
+      return this.$store.getters.user.id == createdItem;
     }
   },
   watch: {
