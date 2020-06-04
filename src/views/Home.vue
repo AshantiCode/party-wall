@@ -1,6 +1,6 @@
-<template>
+<template c>
   <v-container>
-    <v-row class="mx-auto">
+    <v-row>
       <v-col v-for="item in items" :key="item.id">
         <ListItem :item="item" />
       </v-col>
