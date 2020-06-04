@@ -85,6 +85,7 @@ export default {
   methods: {
     onLogout() {
       this.$store.dispatch("logoutUser");
+      this.$router.push({ name: "welcome" });
     }
   }
 };
