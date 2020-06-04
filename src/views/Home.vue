@@ -1,5 +1,5 @@
 <template>
-  <v-container class="customBG">
+  <v-container>
     <div style="max-width: 1000px;" class="mx-auto">
       <h1 class="display-3 my-12 text-center font-weight-bold secondary--text">Make your next Party awesome!</h1>
       <v-row>
