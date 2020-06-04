@@ -14,21 +14,21 @@ import axios from "axios";
 
 export default {
   components: {
-    ListItem
+    ListItem,
   },
   data() {
     return {
-      items: []
+      items: [],
     };
   },
   async created() {
     try {
       const response = await axios.get("http://localhost:3000/items");
-      this.items = response.data;
+      this.items = response.data.reverse();
     } catch (error) {
       console.log(error);
     }
-  }
+  },
 };
 </script>
 
