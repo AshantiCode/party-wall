@@ -118,6 +118,16 @@
       "price": 14,
       "creatorId": "Lc6bGUqX2RXGoOYtRojJsAzgIDu1",
       "id": "qyElW7W"
+    },
+    {
+      "name": "Apple Pie",
+      "category": "food",
+      "description": "Super delicious apple pie recipe from Granny!",
+      "weight": 1,
+      "quantity": 85,
+      "price": 2,
+      "creatorId": "Lc6bGUqX2RXGoOYtRojJsAzgIDu1",
+      "id": "dwNF_ub"
     }
   ],
   "user": [

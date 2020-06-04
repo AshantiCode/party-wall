@@ -2,11 +2,11 @@
   <v-container>
     <v-row class="text-center">
       <v-col>
-        <h1>Food</h1>
+        <h1 class="heading secondary--text">Food</h1>
       </v-col>
     </v-row>
     <v-row>
-      <v-col cols="12" sm="6" offset-sm="3">
+      <v-col cols="10" offset="1" sm="6" offset-sm="3" md="4" offset-md="4">
         <v-form @submit.prevent="onAddFood">
           <v-row>
             <v-col>
@@ -28,7 +28,7 @@
                 name="description"
                 id="description"
                 label="Describe your food"
-                :counter="150"
+                :counter="80"
                 filled
                 auto-grow
                 required
@@ -38,9 +38,13 @@
               ></v-textarea>
             </v-col>
           </v-row>
+
           <v-row>
             <v-col>
-              <p>How much does it weigh?</p>
+              <h4 class="font-weight-regular">
+                How much does
+                <span class="accent--text">{{ name }}</span> weigh?
+              </h4>
               <v-slider v-model="weight" class="align-center" max="10" min="1" hide-details>
                 <template v-slot:append>
                   <v-text-field
@@ -50,15 +54,16 @@
                     single-line
                     type="number"
                     style="width: 40px"
-                  ></v-text-field>lbs.
+                  ></v-text-field
+                  >lbs.
                 </template>
               </v-slider>
             </v-col>
           </v-row>
           <v-row>
             <v-col>
-              <p>How many servings does one order include?</p>
-              <v-slider v-model="quantity" class="align-center" max="15" min="1" hide-details>
+              <h4 class="font-weight-regular">What is the maximun amount you can deliver?</h4>
+              <v-slider v-model="quantity" class="align-center" max="100" min="1" hide-details>
                 <template v-slot:append>
                   <v-text-field
                     v-model="quantity"
@@ -74,7 +79,10 @@
           </v-row>
           <v-row>
             <v-col>
-              <p>How much does one order cost?</p>
+              <h4 class="font-weight-regular">
+                How much does one
+                <span class="accent--text">{{ name }}</span> cost?
+              </h4>
               <v-slider v-model="price" class="align-center" max="100" min="1" hide-details>
                 <template v-slot:append>
                   <v-text-field
@@ -84,7 +92,8 @@
                     single-line
                     type="number"
                     style="width: 40px"
-                  ></v-text-field>$
+                  ></v-text-field
+                  >€
                 </template>
               </v-slider>
             </v-col>
@@ -114,19 +123,13 @@ export default {
       weight: "",
       quantity: "",
       price: "",
-      creatorId: ""
+      creatorId: "",
     };
   },
   computed: {
     formIsValid() {
-      return (
-        this.name !== "" &&
-        this.description !== "" &&
-        this.weight !== "" &&
-        this.quantity !== "" &&
-        this.price !== ""
-      );
-    }
+      return this.name !== "" && this.description !== "" && this.weight !== "" && this.quantity !== "" && this.price !== "";
+    },
   },
   methods: {
     async onAddFood() {
@@ -138,14 +141,14 @@ export default {
         weight: this.weight,
         quantity: this.quantity,
         price: this.price,
-        creatorId: creatorId
+        creatorId: creatorId,
       };
 
       const response = await axios.post(baseUrl, newFoodData);
 
       this.$store.dispatch("setUser", response.data);
       this.$router.push({ name: "home" });
-    }
-  }
+    },
+  },
 };
 </script>

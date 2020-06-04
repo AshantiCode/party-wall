@@ -6,7 +6,7 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-col cols="12" sm="6" offset-sm="3">
+      <v-col cols="12" sm="6" offset-sm="3" md="4" offset-md="4">
         <v-form ref="form">
           <v-row>
             <v-col>
@@ -24,11 +24,7 @@
           </v-row>
           <v-row class="text-center">
             <v-col>
-              <v-btn
-                color="accent py-5 px-8"
-                :disabled="hasInput()"
-                @click="redirectTo(selectedCategory)"
-              >
+              <v-btn color="accent py-5 px-8" :disabled="hasInput()" @click="redirectTo(selectedCategory)">
                 Next
                 <v-icon right>mdi-arrow-right</v-icon>
               </v-btn>
@@ -45,9 +41,9 @@ export default {
     return {
       items: [
         { value: "food", category: "Food" },
-        { value: "drink", category: "Drink" }
+        { value: "drink", category: "Drink" },
       ],
-      selectedCategory: null
+      selectedCategory: null,
     };
   },
   methods: {
@@ -56,15 +52,13 @@ export default {
     },
     redirectTo() {
       this.$router.push({ name: `add-${this.selectedCategory.value}` });
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style scoped>
 .heading {
   font-size: 3rem;
-}
-</style>>
-
-
+}</style
+>>
