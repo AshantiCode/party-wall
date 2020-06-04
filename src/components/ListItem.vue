@@ -44,7 +44,7 @@
         <v-spacer></v-spacer>
 
         <v-col>
-          <v-btn class="primary" v-on="on">Order now!</v-btn>
+          <v-btn class="primary">Order now!</v-btn>
         </v-col>
       </v-row>
     </v-container>
