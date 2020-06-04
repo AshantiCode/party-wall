@@ -1,5 +1,5 @@
 <template>
-  <v-card max-width="300px">
+  <v-card max-width="300px" class="mx-auto" style="position:relative;">
     <v-container class="pt-0">
       <v-row>
         <v-col class="pa-0">
@@ -8,10 +8,26 @@
         </v-col>
 
         <v-col cols="12">
-          <v-card-title class="list-item-heading regular pl-0 accent--text">{{ item.name }}</v-card-title>
+          <v-card-title class="list-item-heading regular pl-0 accent--text">
+            {{ item.name }}
+            <v-btn
+              absolute
+              right
+              fab
+              small
+              color="accent"
+              v-if="userIsCreator"
+              style="transform: translateY(-44px)"
+              @click="onDeleteItem(item.id)"
+            >
+              <v-icon>mdi-delete-forever</v-icon>
+            </v-btn>
+          </v-card-title>
+
           <v-card-subtitle v-if="!drinks" class="pa-0 secondary--text">{{item.description}}.</v-card-subtitle>
           <v-card-text class="font-weight-bold headline pa-0">{{ item.price }} €</v-card-text>
         </v-col>
+
         <v-row>
           <v-col class="py-0">
             <v-card-subtitle v-if="drinks" class="py-0 text--disabled">Vol.: {{item.volume}} liter</v-card-subtitle>
@@ -19,7 +35,7 @@
           </v-col>
 
           <v-col class="py-0">
-            <v-card-subtitle class="pa-0 text--disabled">Max. Items: {{item.quantity}}</v-card-subtitle>
+            <v-card-subtitle class="pa-0 text--disabled">Max. Order: {{item.quantity}}</v-card-subtitle>
           </v-col>
         </v-row>
 
@@ -32,26 +48,21 @@
             <v-select
               class="text--secondary orders"
               dense
-              v-model="maxItems"
+              v-model="selectedAmount"
               :items="maxItemsArray"
             ></v-select>
-
-            <p class="title">Total: {{ totalPrice }} €</p>
           </v-col>
         </v-row>
-      </v-row>
-      <v-row>
-        <v-col>
-          <v-btn fab small color="accent" v-if="userIsCreator" @click="onDeleteItem(item.id)">
-            <v-icon>mdi-delete-forever</v-icon>
-          </v-btn>
-        </v-col>
 
-        <v-spacer></v-spacer>
+        <v-row>
+          <v-col cols="6">
+            <v-card-text class="title pt-0">Total: {{ totalPrice }} €</v-card-text>
+          </v-col>
 
-        <v-col>
-          <v-btn class="primary">Order now!</v-btn>
-        </v-col>
+          <v-col>
+            <v-btn small class="primary">Order now</v-btn>
+          </v-col>
+        </v-row>
       </v-row>
     </v-container>
   </v-card>
@@ -69,7 +80,7 @@ export default {
   props: ["item"],
   data() {
     return {
-      maxItems: 0,
+      selectedAmount: 0,
       totalPrice: 0
     };
   },
@@ -113,7 +124,7 @@ export default {
     }
   },
   watch: {
-    menge(value) {
+    selectedAmount(value) {
       return (this.totalPrice = this.item.price * value);
     }
   }
