@@ -1,11 +1,21 @@
 <template>
-  <v-card max-width="300px" class="mx-auto" style="position:relative;">
+  <v-card max-width="300px" class="mx-auto">
     <v-container class="pt-0">
       <v-row>
-        <v-col class="pa-0">
-          <v-img v-if="drinks" max-height="200px" :src="require('@/assets/drinks.jpg')"></v-img>
-          <v-img v-if="!drinks" max-height="200px" :src="require('@/assets/food.jpg')"></v-img>
-        </v-col>
+        <v-hover v-slot:default="{ hover }">
+          <v-col class="pa-0" style="position: relative">
+            <v-img v-if="drinks" max-height="200px" :src="require('@/assets/drinks.jpg')"></v-img>
+
+            <div style="position:relative;">
+              <v-fade-transition>
+                <v-overlay v-if="hover" absolute class="white--text" opacity="0.8" value="overlay">{{
+                  item.description
+                }}</v-overlay>
+              </v-fade-transition>
+              <v-img v-if="!drinks" max-height="200px" :src="require('@/assets/food.jpg')"></v-img>
+            </div>
+          </v-col>
+        </v-hover>
 
         <v-col cols="12">
           <v-card-title class="list-item-heading regular pl-0 accent--text">
@@ -24,18 +34,17 @@
             </v-btn>
           </v-card-title>
 
-          <v-card-subtitle v-if="!drinks" class="pa-0 secondary--text">{{item.description}}.</v-card-subtitle>
           <v-card-text class="font-weight-bold headline pa-0">{{ item.price }} €</v-card-text>
         </v-col>
 
         <v-row>
           <v-col class="py-0">
-            <v-card-subtitle v-if="drinks" class="py-0 text--disabled">Vol.: {{item.volume}} liter</v-card-subtitle>
-            <v-card-subtitle v-if="!drinks" class="py-0 text--disabled">Weight: {{item.weight}} lbs.</v-card-subtitle>
+            <v-card-subtitle v-if="drinks" class="py-0 text--disabled">Vol.: {{ item.volume }} liter</v-card-subtitle>
+            <v-card-subtitle v-if="!drinks" class="py-0 text--disabled">Weight: {{ item.weight }} lbs.</v-card-subtitle>
           </v-col>
 
           <v-col class="py-0">
-            <v-card-subtitle class="pa-0 text--disabled">Max. Order: {{item.quantity}}</v-card-subtitle>
+            <v-card-subtitle class="pa-0 text--disabled">Max. Order: {{ item.quantity }}</v-card-subtitle>
           </v-col>
         </v-row>
 
@@ -45,12 +54,7 @@
           </v-col>
 
           <v-col cols="6">
-            <v-select
-              class="text--secondary orders"
-              dense
-              v-model="selectedAmount"
-              :items="maxItemsArray"
-            ></v-select>
+            <v-select class="text--secondary orders" dense v-model="selectedAmount" :items="maxItemsArray"></v-select>
           </v-col>
         </v-row>
 
@@ -68,7 +72,6 @@
   </v-card>
 </template>
 
-
 <script>
 import axios from "axios";
 
@@ -80,17 +83,17 @@ export default {
   data() {
     return {
       selectedAmount: 0,
-      totalPrice: 0
+      totalPrice: 0,
     };
   },
   methods: {
     onDeleteItem(itemId) {
       const deleteUrl = `${baseUrl}/${itemId}`;
 
-      axios.delete(deleteUrl).then(response => {
+      axios.delete(deleteUrl).then((response) => {
         console.log("Axios Delete REsponse: ", response);
       });
-    }
+    },
   },
   computed: {
     maxItemsArray() {
@@ -105,10 +108,7 @@ export default {
       return this.item.category == "drinks";
     },
     userIsAuthenticated() {
-      return (
-        this.$store.getters.user !== null &&
-        this.$store.getters.user !== undefined
-      );
+      return this.$store.getters.user !== null && this.$store.getters.user !== undefined;
     },
     createdItem() {
       return this.item.creatorId;
@@ -120,13 +120,13 @@ export default {
         return false;
       }
       return this.$store.getters.user.id == createdItem;
-    }
+    },
   },
   watch: {
     selectedAmount(value) {
       return (this.totalPrice = this.item.price * value);
-    }
-  }
+    },
+  },
 };
 </script>
 
