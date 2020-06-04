@@ -8,7 +8,6 @@ Vue.use(Vuex);
 export const store = new Vuex.Store({
   state: {
     user: null,
-    loading: false,
     error: null,
   },
   mutations: {
@@ -25,12 +24,9 @@ export const store = new Vuex.Store({
   actions: {
     async registerUser({ commit }, payload) {
       try {
-        console.log("Payload :", payload);
-
         commit("clearError");
-        const response = await firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password);
-        console.log("Rsponse in State: ", response);
 
+        const response = await firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password);
         const newUser = {
           id: response.user.uid,
           createdItems: [],
@@ -44,7 +40,6 @@ export const store = new Vuex.Store({
     async loginUser({ commit }, payload) {
       try {
         const response = await firebase.auth().signInWithEmailAndPassword(payload.email, payload.password);
-        console.log("Login Response: ", response);
         commit("clearError");
         const newUser = {
           id: response.user.uid,
@@ -61,7 +56,7 @@ export const store = new Vuex.Store({
     },
     logoutUser({ commit }) {
       firebase.auth().signOut();
-      commit("setUser = null");
+      commit("setUser", null);
     },
   },
   clearError({ commit }) {
