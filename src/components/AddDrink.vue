@@ -2,11 +2,11 @@
   <v-container>
     <v-row class="text-center">
       <v-col>
-        <h1>Drinks</h1>
+        <h1 class="heading secondary--text">Drinks</h1>
       </v-col>
     </v-row>
     <v-row>
-      <v-col cols="12" sm="6" offset-sm="3">
+      <v-col cols="10" offset="1" sm="6" offset-sm="3" md="4" offset-md="4">
         <v-form @submit.prevent="onAddDrink">
           <v-row>
             <v-col>
@@ -38,7 +38,8 @@
                     single-line
                     type="number"
                     style="width: 45px"
-                  ></v-text-field>oz
+                  ></v-text-field
+                  >oz
                 </template>
               </v-slider>
             </v-col>
@@ -72,7 +73,8 @@
                     single-line
                     type="number"
                     style="width: 45px"
-                  ></v-text-field>$
+                  ></v-text-field
+                  >€
                 </template>
               </v-slider>
             </v-col>
@@ -101,18 +103,13 @@ export default {
       volume: "",
       quantity: "",
       price: "",
-      creatorId: ""
+      creatorId: "",
     };
   },
   computed: {
     formIsValid() {
-      return (
-        this.name !== "" &&
-        this.volume !== "" &&
-        this.quantity !== "" &&
-        this.price !== ""
-      );
-    }
+      return this.name !== "" && this.volume !== "" && this.quantity !== "" && this.price !== "";
+    },
   },
   methods: {
     async onAddDrink() {
@@ -123,13 +120,13 @@ export default {
         volume: this.volume,
         quantity: this.quantity,
         price: this.price,
-        creatorId: creatorId
+        creatorId: creatorId,
       };
       const response = await axios.post(baseUrl, newDrinksData);
 
       this.$store.dispatch("setUser", response.data);
       this.$router.push({ name: "home" });
-    }
-  }
+    },
+  },
 };
 </script>
