@@ -2,11 +2,11 @@
   <v-container>
     <v-row class="text-center">
       <v-col>
-        <h1>Food</h1>
+        <h1 class="heading secondary--text">Food</h1>
       </v-col>
     </v-row>
     <v-row>
-      <v-col cols="12" sm="6" offset-sm="3">
+      <v-col cols="10" offset="1" sm="6" offset-sm="3" md="4" offset-md="4">
         <v-form @submit.prevent="onAddFood">
           <v-row>
             <v-col>
@@ -93,7 +93,7 @@
                     type="number"
                     style="width: 40px"
                   ></v-text-field
-                  >$
+                  >€
                 </template>
               </v-slider>
             </v-col>
