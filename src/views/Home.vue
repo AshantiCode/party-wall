@@ -1,6 +1,7 @@
 <template>
-  <v-container>
+  <v-container class="customBG">
     <div style="max-width: 1000px;" class="mx-auto">
+      <h1 class="display-3 my-12 text-center font-weight-bold secondary--text">Make your next Party awesome!</h1>
       <v-row>
         <v-col v-for="item in items" :key="item.id">
           <ListItem :item="item" />
