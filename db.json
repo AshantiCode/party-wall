@@ -19,24 +19,6 @@
 			"quantity": "6"
 		},
 		{
-			"id": "2",
-			"category": "drinks",
-			"userId": "1",
-			"name": "Mojito",
-			"volume": "0.33",
-			"price": "12",
-			"quantity": "6"
-		},
-		{
-			"id": "2",
-			"category": "drinks",
-			"userId": "1",
-			"name": "Mojito",
-			"volume": "0.33",
-			"price": "12",
-			"quantity": "6"
-		},
-		{
 			"id": "3",
 			"category": "food",
 			"userId": "1",
@@ -109,6 +91,14 @@
 			"quantity": 4,
 			"price": 35,
 			"id": "eAyz583"
+		},
+		{
+			"name": "Green Smothies",
+			"category": "drinks",
+			"volume": 21,
+			"quantity": 15,
+			"price": 5,
+			"id": "t59X9fb"
 		}
 	],
 	"user": [{
