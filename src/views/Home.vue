@@ -1,10 +1,12 @@
 <template>
   <v-container>
-    <v-row>
-      <v-col v-for="item in items" :key="item.id">
-        <ListItem :item="item" />
-      </v-col>
-    </v-row>
+    <div style="max-width: 1000px;" class="mx-auto">
+      <v-row>
+        <v-col v-for="item in items" :key="item.id">
+          <ListItem :item="item" />
+        </v-col>
+      </v-row>
+    </div>
   </v-container>
 </template>
 
