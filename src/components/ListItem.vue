@@ -71,7 +71,6 @@
 
 <script>
 import axios from "axios";
-// import { store } from "../store";
 
 const baseUrl = "http://localhost:3000/items";
 
