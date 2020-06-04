@@ -1,9 +1,9 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../components/Home";
+import Home from "../views/Home";
 import AddItem from "../components/AddItem";
-import Login from "../components/Login";
-import Register from "../components/Register";
+import Login from "../views/Login";
+import Register from "../views/Register";
 import AddFood from "../components/AddFood";
 import AddDrink from "../components/AddDrink";
 
