@@ -30,16 +30,19 @@ export default new VueRouter({
       path: "/add-item",
       name: "add-item",
       component: AddItem,
+      beforeEnter: AuthGuard,
     },
     {
       path: "/add-food",
       name: "add-food",
       component: AddFood,
+      beforeEnter: AuthGuard,
     },
     {
       path: "/add-drink",
       name: "add-drink",
       component: AddDrink,
+      beforeEnter: AuthGuard,
     },
     {
       path: "/login",
