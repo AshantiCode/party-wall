@@ -91,9 +91,9 @@
 <script>
 import axios from "axios";
 import { store } from "../store";
-console.log("USER in add Drink: ", store.getters.user);
 
 const baseUrl = "http://localhost:3000/items";
+
 export default {
   data() {
     return {
