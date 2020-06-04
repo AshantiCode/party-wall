@@ -19,6 +19,24 @@
 			"quantity": "6"
 		},
 		{
+			"id": "2",
+			"category": "drinks",
+			"userId": "1",
+			"name": "Mojito",
+			"volume": "0.33",
+			"price": "12",
+			"quantity": "6"
+		},
+		{
+			"id": "2",
+			"category": "drinks",
+			"userId": "1",
+			"name": "Mojito",
+			"volume": "0.33",
+			"price": "12",
+			"quantity": "6"
+		},
+		{
 			"id": "3",
 			"category": "food",
 			"userId": "1",

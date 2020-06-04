@@ -1,29 +1,24 @@
 <template>
   <v-container>
-    <v-row>
-      <v-col cols="12" sm="8" offset-sm="2">
-        <div v-for="item in items" :key="item.id">
-          <FoodListItem v-if="item.category == 'food'" v-bind:item="item" />
-          <DrinkListItem v-else v-bind:item="item" />
-        </div>
+    <v-row class="mx-auto">
+      <v-col v-for="item in items" :key="item.id">
+        <ListItem :item="item" />
       </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script>
-import FoodListItem from "./FoodListItem";
-import DrinkListItem from "./DrinkListItem";
+import ListItem from "../components/ListItem";
 import axios from "axios";
 
 export default {
   components: {
-    FoodListItem,
-    DrinkListItem,
+    ListItem
   },
   data() {
     return {
-      items: [],
+      items: []
     };
   },
   async created() {
@@ -33,7 +28,7 @@ export default {
     } catch (error) {
       console.log(error);
     }
-  },
+  }
 };
 </script>
 
