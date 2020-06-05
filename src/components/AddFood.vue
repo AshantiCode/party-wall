@@ -108,7 +108,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import { Axios } from "../../Axios";
 import { store } from "../store";
 
 export default {
@@ -146,7 +146,7 @@ export default {
         creatorId: creatorId
       };
 
-      const response = await axios.post("/items/", newFoodData);
+      const response = await Axios.post("/items/", newFoodData);
 
       this.$store.dispatch("setUser", response.data);
       this.$router.push({ name: "home" });

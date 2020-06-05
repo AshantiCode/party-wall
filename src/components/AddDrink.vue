@@ -89,7 +89,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import { Axios } from "../../Axios";
 import { store } from "../store";
 
 export default {
@@ -123,7 +123,7 @@ export default {
         price: this.price,
         creatorId: creatorId
       };
-      const response = await axios.post("/items/", newDrinksData);
+      const response = await Axios.post("/items/", newDrinksData);
 
       this.$store.dispatch("setUser", response.data);
       this.$router.push({ name: "home" });

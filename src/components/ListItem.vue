@@ -87,7 +87,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import { Axios } from "../../Axios";
 
 export default {
   name: "ListItem",
@@ -102,8 +102,9 @@ export default {
     onDeleteItem(itemId) {
       const deleteUrl = `/items/${itemId}`;
 
-      axios.delete(deleteUrl).then(response => {
-        const response = response.data;
+      Axios.delete(deleteUrl).then(response => {
+        console.log("response data: ", response);
+        location.reload();
       });
     }
   },

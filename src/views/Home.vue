@@ -15,7 +15,7 @@
 
 <script>
 import ListItem from "../components/ListItem";
-import Axios from "axios";
+import { Axios } from "../../Axios";
 
 export default {
   components: {
