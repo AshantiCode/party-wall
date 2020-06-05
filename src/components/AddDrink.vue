@@ -129,7 +129,7 @@ export default {
         price: this.price,
         creatorId: creatorId
       };
-      const response = await Axios.put("/items", newDrinksData);
+      const response = await Axios.put(newDrinksData);
 
       this.$store.dispatch("setUser", response.data);
       this.$router.push({ name: "home" });
