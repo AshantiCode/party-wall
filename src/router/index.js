@@ -7,7 +7,7 @@ import Register from "../views/Register";
 import AddFood from "../components/AddFood";
 import AddDrink from "../components/AddDrink";
 import Welcome from "../views/Welcome.vue";
-import AuthGuard from "./auth-guards";
+// import AuthGuard from "./auth-guards";
 
 Vue.use(VueRouter);
 
@@ -23,26 +23,26 @@ export default new VueRouter({
       path: "/",
       name: "home",
       component: Home,
-      beforeEnter: AuthGuard,
+      //   beforeEnter: AuthGuard,
     },
 
     {
       path: "/add-item",
       name: "add-item",
       component: AddItem,
-      beforeEnter: AuthGuard,
+      //   beforeEnter: AuthGuard,
     },
     {
       path: "/add-food",
       name: "add-food",
       component: AddFood,
-      beforeEnter: AuthGuard,
+      //   beforeEnter: AuthGuard,
     },
     {
       path: "/add-drink",
       name: "add-drink",
       component: AddDrink,
-      beforeEnter: AuthGuard,
+      //   beforeEnter: AuthGuard,
     },
     {
       path: "/login",
