@@ -87,9 +87,7 @@
 </template>
 
 <script>
-import axios from "axios";
-
-const baseUrl = "http://localhost:3000/items";
+import { Axios } from "../../Axios";
 
 export default {
   name: "ListItem",
@@ -102,9 +100,9 @@ export default {
   },
   methods: {
     onDeleteItem(itemId) {
-      const deleteUrl = `${baseUrl}/${itemId}`;
+      const deleteUrl = `/${itemId}`;
 
-      axios.delete(deleteUrl).then(response => {
+      Axios.delete(deleteUrl).then(response => {
         console.log("Axios Delete REsponse: ", response);
       });
     }
