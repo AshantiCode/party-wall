@@ -5,5 +5,6 @@ export const Axios = axios.create({
   headers: {
     "Content-Type": "application/json",
     "Access-Control-Allow-Origin": "*",
+    "secret-key": "$2b$10$bNg5IvVWlIpxF4Yu8Bxoy.br3dGFcuTryCT1yloXoIylUaYEMIgzq",
   },
 });
