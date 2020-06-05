@@ -28,7 +28,7 @@ export default {
   },
   async created() {
     try {
-      const response = await Axios.get("/items");
+      const response = await Axios.get();
       this.items = response.data.reverse();
     } catch (error) {
       console.log(error);
