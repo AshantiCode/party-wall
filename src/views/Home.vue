@@ -1,7 +1,9 @@
 <template>
   <v-container>
     <div style="max-width: 1000px;" class="mx-auto">
-      <h1 class="display-3 my-12 text-center font-weight-bold secondary--text">Make your next Party awesome!</h1>
+      <h1
+        class="display-3 my-12 text-center font-weight-bold secondary--text"
+      >Make Your Party Awesome!</h1>
       <v-row>
         <v-col v-for="item in items" :key="item.id">
           <ListItem :item="item" />
@@ -13,25 +15,25 @@
 
 <script>
 import ListItem from "../components/ListItem";
-import axios from "axios";
-
+// import axios from "axios";
+import { Axios } from "../../Axios";
 export default {
   components: {
-    ListItem,
+    ListItem
   },
   data() {
     return {
-      items: [],
+      items: []
     };
   },
   async created() {
     try {
-      const response = await axios.get("http://localhost:3000/items");
+      const response = await Axios.get();
       this.items = response.data.reverse();
     } catch (error) {
       console.log(error);
     }
-  },
+  }
 };
 </script>
 

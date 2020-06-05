@@ -38,16 +38,15 @@
                     single-line
                     type="number"
                     style="width: 45px"
-                  ></v-text-field
-                  >oz
+                  ></v-text-field>oz
                 </template>
               </v-slider>
             </v-col>
           </v-row>
           <v-row>
             <v-col>
-              <p>How many servings does one order include?</p>
-              <v-slider v-model="quantity" class="align-center" max="15" min="1" hide-details>
+              <p>What is the maximun amount you can deliver?</p>
+              <v-slider v-model="quantity" class="align-center" max="100" min="1" hide-details>
                 <template v-slot:append>
                   <v-text-field
                     v-model="quantity"
@@ -63,7 +62,10 @@
           </v-row>
           <v-row>
             <v-col>
-              <p>How much does one order cost?</p>
+              <h4 class="font-weight-regular">
+                How much does one
+                <span class="accent--text">{{ name }}</span> cost?
+              </h4>
               <v-slider v-model="price" class="align-center" max="100" min="1" hide-details>
                 <template v-slot:append>
                   <v-text-field
@@ -73,8 +75,7 @@
                     single-line
                     type="number"
                     style="width: 45px"
-                  ></v-text-field
-                  >€
+                  ></v-text-field>€
                 </template>
               </v-slider>
             </v-col>
@@ -91,10 +92,11 @@
 </template>
 
 <script>
-import axios from "axios";
+// import axios from "axios";
 import { store } from "../store";
 
-const baseUrl = "http://localhost:3000/items";
+// const baseUrl = "http://localhost:3000/items";
+import { Axios } from "../../Axios";
 
 export default {
   data() {
@@ -103,13 +105,18 @@ export default {
       volume: "",
       quantity: "",
       price: "",
-      creatorId: "",
+      creatorId: ""
     };
   },
   computed: {
     formIsValid() {
-      return this.name !== "" && this.volume !== "" && this.quantity !== "" && this.price !== "";
-    },
+      return (
+        this.name !== "" &&
+        this.volume !== "" &&
+        this.quantity !== "" &&
+        this.price !== ""
+      );
+    }
   },
   methods: {
     async onAddDrink() {
@@ -120,13 +127,13 @@ export default {
         volume: this.volume,
         quantity: this.quantity,
         price: this.price,
-        creatorId: creatorId,
+        creatorId: creatorId
       };
-      const response = await axios.post(baseUrl, newDrinksData);
+      const response = await Axios.post("/items", newDrinksData);
 
       this.$store.dispatch("setUser", response.data);
       this.$router.push({ name: "home" });
-    },
-  },
+    }
+  }
 };
 </script>

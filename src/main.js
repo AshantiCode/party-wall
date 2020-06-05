@@ -27,7 +27,7 @@ new Vue({
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.$store.dispatch("autoLogin", user);
-        this.$router.push({ name: "home" });
+        // this.$router.push({ name: "home" });
       }
     });
   },
