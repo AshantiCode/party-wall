@@ -38,8 +38,7 @@
                     single-line
                     type="number"
                     style="width: 45px"
-                  ></v-text-field
-                  >oz
+                  ></v-text-field>oz
                 </template>
               </v-slider>
             </v-col>
@@ -73,8 +72,7 @@
                     single-line
                     type="number"
                     style="width: 45px"
-                  ></v-text-field
-                  >€
+                  ></v-text-field>€
                 </template>
               </v-slider>
             </v-col>
@@ -94,8 +92,6 @@
 import axios from "axios";
 import { store } from "../store";
 
-const baseUrl = "http://localhost:3000/items";
-
 export default {
   data() {
     return {
@@ -103,13 +99,18 @@ export default {
       volume: "",
       quantity: "",
       price: "",
-      creatorId: "",
+      creatorId: ""
     };
   },
   computed: {
     formIsValid() {
-      return this.name !== "" && this.volume !== "" && this.quantity !== "" && this.price !== "";
-    },
+      return (
+        this.name !== "" &&
+        this.volume !== "" &&
+        this.quantity !== "" &&
+        this.price !== ""
+      );
+    }
   },
   methods: {
     async onAddDrink() {
@@ -120,13 +121,13 @@ export default {
         volume: this.volume,
         quantity: this.quantity,
         price: this.price,
-        creatorId: creatorId,
+        creatorId: creatorId
       };
-      const response = await axios.post(baseUrl, newDrinksData);
+      const response = await axios.post("/items/", newDrinksData);
 
       this.$store.dispatch("setUser", response.data);
       this.$router.push({ name: "home" });
-    },
-  },
+    }
+  }
 };
 </script>

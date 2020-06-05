@@ -54,8 +54,7 @@
                     single-line
                     type="number"
                     style="width: 40px"
-                  ></v-text-field
-                  >lbs.
+                  ></v-text-field>lbs.
                 </template>
               </v-slider>
             </v-col>
@@ -92,8 +91,7 @@
                     single-line
                     type="number"
                     style="width: 40px"
-                  ></v-text-field
-                  >€
+                  ></v-text-field>€
                 </template>
               </v-slider>
             </v-col>
@@ -113,8 +111,6 @@
 import axios from "axios";
 import { store } from "../store";
 
-const baseUrl = "http://localhost:3000/items";
-
 export default {
   data() {
     return {
@@ -123,13 +119,19 @@ export default {
       weight: "",
       quantity: "",
       price: "",
-      creatorId: "",
+      creatorId: ""
     };
   },
   computed: {
     formIsValid() {
-      return this.name !== "" && this.description !== "" && this.weight !== "" && this.quantity !== "" && this.price !== "";
-    },
+      return (
+        this.name !== "" &&
+        this.description !== "" &&
+        this.weight !== "" &&
+        this.quantity !== "" &&
+        this.price !== ""
+      );
+    }
   },
   methods: {
     async onAddFood() {
@@ -141,14 +143,14 @@ export default {
         weight: this.weight,
         quantity: this.quantity,
         price: this.price,
-        creatorId: creatorId,
+        creatorId: creatorId
       };
 
-      const response = await axios.post(baseUrl, newFoodData);
+      const response = await axios.post("/items/", newFoodData);
 
       this.$store.dispatch("setUser", response.data);
       this.$router.push({ name: "home" });
-    },
-  },
+    }
+  }
 };
 </script>

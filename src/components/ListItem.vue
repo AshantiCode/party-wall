@@ -89,8 +89,6 @@
 <script>
 import axios from "axios";
 
-const baseUrl = "http://localhost:3000/items";
-
 export default {
   name: "ListItem",
   props: ["item"],
@@ -102,10 +100,10 @@ export default {
   },
   methods: {
     onDeleteItem(itemId) {
-      const deleteUrl = `${baseUrl}/${itemId}`;
+      const deleteUrl = `/items/${itemId}`;
 
       axios.delete(deleteUrl).then(response => {
-        console.log("Axios Delete REsponse: ", response);
+        const response = response.data;
       });
     }
   },
