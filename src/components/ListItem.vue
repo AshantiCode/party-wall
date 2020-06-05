@@ -100,7 +100,7 @@ export default {
   },
   methods: {
     onDeleteItem(itemId) {
-      const deleteUrl = `/items/${itemId}`;
+      const deleteUrl = `/${itemId}`;
 
       Axios.delete(deleteUrl).then(response => {
         console.log("Axios Delete REsponse: ", response);
